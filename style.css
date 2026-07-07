@@ -1,0 +1,1490 @@
+/* --- Фирменная палитра и настройки --- */
+:root {
+    --savanna-gold: #E5B94D;
+    --terra-cotta: #A85532;
+    --deep-acacia: #2D3A26;
+    --ivory-sky: #F7F4EF;
+    --volcanic-ash: #4A4A4A;
+    --obsidian-night: #1A1A1A;
+
+    /* Шрифты */
+    --font-serif: 'Cinzel', serif;
+    --font-sans: 'Roboto', sans-serif;
+    --font-logo: 'Montserrat', sans-serif;
+
+    /* Привязка цветов */
+    --text-main: var(--ivory-sky);
+    --primary-btn-bg: var(--terra-cotta);
+    --header-bg-overlay: rgba(26, 26, 26, 0.2); 
+}
+
+/* --- Сброс стилей --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text-main);
+    background-color: var(--obsidian-night);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-main); 
+    transition: color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Хедер --- */
+.main-header {
+    position: fixed; /* Перевели в fixed для фиксации при скролле */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Подняли повыше, чтобы не перекрывался секциями */
+    padding: 14px 0;
+    
+    /* Начальное состояние: мягкий темный градиент сверху вниз */
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.5) 0%, rgba(17, 17, 17, 0.2) 100%);
+    
+    /* Плавный переход для всех трансформаций хедера */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                background-color 0.3s ease, 
+                padding 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Класс скрытия: скролл вниз */
+.main-header.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* Класс фиксации: скролл вверх (Obsidian Night, матовое стекло) */
+.main-header.header-scrolled {
+    padding: 14px 0; /* Делаем шапку чуть компактнее при скролле */
+    background: rgba(26, 26, 26, 0.85); /* Obsidian Night с прозрачностью */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Логотип */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Воздух между слоном и началом слова JAMBOTOUR */
+    font-family: var(--font-logo);
+    font-size: 1.0rem;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+    user-select: none;
+}
+
+.logo-icon {
+    width: 20px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+/* Стили для частей слова, теперь идущих слитно */
+.logo-jambo {
+    font-weight: 700;
+}
+
+.logo-tour {
+    font-weight: 400;
+}
+
+/* Навигация */
+.main-nav ul {
+    display: flex;
+    gap: 40px;
+}
+
+.main-nav a {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.85;
+    color: var(--text-main);
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Ховер в цвет Savanna Gold */
+.main-nav a:hover {
+    color: #e5b94d; /* Savanna Gold */
+    opacity: 1;
+}
+
+/* Иконки */
+.header-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 1.1rem;
+}
+
+.header-icons a {
+    color: var(--text-main);
+    opacity: 0.85;
+    transition: color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+}
+
+/* Ховер в цвет Savanna Gold */
+.header-icons a:hover {
+    color: #e5b94d; /* Savanna Gold */
+    opacity: 1;
+}
+
+/* --- Hero Блок --- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content {
+    max-width: 850px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Заголовок (Cinzel, Жирный шрифт) */
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 4.5rem; 
+    font-weight: 700; 
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    color: var(--text-main);
+}
+
+.hero-description {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    color: var(--text-main);
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 45px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Кнопка --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-main);
+}
+
+.btn-primary {
+    background-color: var(--primary-btn-bg);
+}
+
+.btn-primary:hover {
+    background-color: #c25221; 
+    transform: translateY(-2px);
+}
+
+/* Градиентное затемнение внизу */
+.hero-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    background: linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, var(--obsidian-night) 100%);
+    z-index: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .main-nav {
+        display: none; 
+    }
+}
+
+/* ==========================================================================
+   СЕКЦИЯ ТУРОВ (Trips Section)
+   ========================================================================== */
+
+.trips-section {
+    background-color: var(--obsidian-night, #111111);
+    padding: 100px 0;
+    box-sizing: border-box;
+}
+
+.trips-header {
+    margin-bottom: 50px;
+}
+
+.trips-subtitle {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--savanna-gold, #e5b94d);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.trips-title {
+    font-family: var(--font-serif), serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ivory-sky, #f7f4ef);
+}
+
+.trips-title .accent-text {
+    color: var(--savanna-gold, #e5b94d);
+}
+
+/* --- Сетка контейнеров --- */
+.trips-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Отступ между верхним и нижним рядами */
+    max-width: 1160px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.trips-row {
+    display: flex;
+    gap: 30px; /* Отступ между карточками в одном ряду */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Точная высота для рядов из ТЗ */
+.row-top {
+    height: 595px;
+}
+
+.row-bottom {
+    height: 358px;
+}
+
+/* Точная пиксельная ширина для каждой карточки */
+.card-01 { width: 652px; }
+.card-02 { 
+    width: 468px; 
+    position: relative; /* Для абсолютного позиционирования фото внутри */
+}
+.card-03 { width: 466px; }
+.card-04 { width: 654px; }
+
+
+/* --- Общие стили для всех карточек --- */
+.trip-card {
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Картинка сверху, контент снизу по умолчанию */
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.card-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-content {
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1e1e1e;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* --- Пропорции картинок для вертикальных карточек (01, 03) --- */
+.row-top .trip-card:not(.card-02) .card-image {
+    height: 65%; /* Крупное фото в верхнем ряду */
+}
+.row-top .trip-card:not(.card-02) .card-content {
+    height: 35%;
+}
+
+.row-bottom .trip-card:not(.card-horizontal) .card-image {
+    height: 55%; /* Сбалансированное фото в нижнем ряду */
+}
+.row-bottom .trip-card:not(.card-horizontal) .card-content {
+    height: 45%;
+}
+
+
+/* --- Специфика Карточки 02 (Полное наложение текста поверх фото) --- */
+.card-02 .card-image {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.card-content-overlay {
+    position: relative;
+    z-index: 2;
+    margin-top: auto; /* Прижимает контент к низу */
+    padding: 40px 30px 30px 30px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Градиентная подложка от прозрачного к глубокому Obsidian Night */
+    background: linear-gradient(to top, 
+                rgba(30, 30, 30, 0.95) 0%, 
+                rgba(30, 30, 30, 0.7) 60%, 
+                rgba(30, 30, 30, 0) 100%);
+}
+
+
+/* --- Специфика Карточки 04 (Горизонтальное разделение в ряд) --- */
+.card-horizontal {
+    flex-direction: row !important; /* Выстраиваем фото и контент бок о бок */
+}
+
+.card-horizontal .card-image {
+    width: 42%;     /* Пропорция ширины фото слева */
+    height: 100%;   /* На всю высоту ряда (358px) */
+    flex-shrink: 0;
+}
+
+.card-horizontal .card-content {
+    width: 58%;     /* Пропорция текстового блока справа */
+    height: 100%;   /* На всю высоту ряда */
+    padding: 40px;  /* Просторные внутренние отступы по макету */
+}
+
+
+/* --- Интерактивные эффекты (Ховеры) --- */
+.trip-card:hover {
+    transform: scale(1.02);
+    border-color: var(--savanna-gold, #e5b94d);
+    box-shadow: 0 20px 40px rgba(229, 185, 77, 0.12), 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Легкое приближение картинок при наведении на карточку */
+.trip-card:hover .card-image {
+    transform: scale(1.03);
+}
+
+
+/* --- Типографика внутри карточек --- */
+.card-number {
+    font-family: var(--font-serif), serif;
+    font-size: 1.6rem;
+    color: var(--savanna-gold, #e5b94d);
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.card-title {
+    font-family: var(--font-serif), serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ivory-sky, #f7f4ef);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.card-desc {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 0.85rem;
+    color: var(--ivory-sky, #f7f4ef);
+    opacity: 0.65;
+    line-height: 1.45;
+}
+
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (Планшеты и Смартфоны)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .trips-section {
+        padding: 60px 0;
+    }
+
+    .trips-container,
+    .trips-row {
+        flex-direction: column !important;
+        height: auto !important; /* Сбрасываем фиксированную высоту рядов */
+        gap: 20px;
+    }
+    
+    .trip-card {
+        width: 100% !important; /* Карточки занимают всю ширину экрана */
+        height: auto !important;
+        flex-direction: column !important; /* Карточка 04 тоже перестраивается в колонку */
+    }
+    
+    .card-image {
+        height: 280px !important; /* Унифицированная высота фото на мобильных */
+        width: 100% !important;
+    }
+    
+    .card-content {
+        height: auto !important;
+        width: 100% !important;
+        padding: 30px 20px;
+    }
+
+    .card-content-overlay {
+        position: relative;
+        margin-top: 0;
+        padding: 30px 20px;
+        background: #1e1e1e; /* На мобильных убираем наложение, делая классическую карточку */
+    }
+
+    .card-02 .card-image {
+        position: relative; /* Возвращаем картинку в общий поток */
+        height: 280px !important;
+    }
+    
+    .trips-title {
+        font-size: 2rem;
+    }
+}
+
+/* --- Секция преимуществ (Benefits Section) --- */
+.benefits-section {
+    background-color: #3e3e3e; /* Благородный серый фон из макета */
+    padding: 100px 0;
+}
+
+/* Шапка секции: заголовок слева, описание справа */
+.benefits-header {
+    margin-bottom: 60px;
+}
+
+.benefits-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--savanna-gold);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.benefits-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.benefits-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ivory-sky);
+    width: 45%;
+    line-height: 1.2;
+}
+
+.benefits-title .accent-text {
+    color: var(--savanna-gold);
+}
+
+.benefits-header-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--ivory-sky);
+    opacity: 0.8;
+    width: 50%;
+    line-height: 1.6;
+}
+
+/* Сетка преимуществ */
+.benefits-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.benefit-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Сама карточка с фоном */
+.benefit-card {
+    height: 420px; /* Оптимальная высота карточек */
+    border-radius: 24px; /* Мягкое скругление по макету */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    
+    /* Анимация увеличения */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+/* Эффект ховера */
+.benefit-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Градиентный оверлей для текста внутри карточки */
+.benefit-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 25px 25px 25px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.85) 0%, 
+                rgba(0, 0, 0, 0.4) 60%, 
+                rgba(0, 0, 0, 0) 100%);
+}
+
+.benefit-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ivory-sky);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Описание под карточкой */
+.benefit-desc {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--ivory-sky);
+    opacity: 0.8;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 992px) {
+    .benefits-header-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .benefits-title, 
+    .benefits-header-desc {
+        width: 100%;
+    }
+    
+    .benefits-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .benefit-card {
+        height: 350px;
+    }
+}
+
+/* --- Секция отзывов (Reviews Section) --- */
+.reviews-section {
+    background-color: #1a1a1a; /* Глубокий темный Obsidian Night */
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Шапка */
+.reviews-header {
+    margin-bottom: 60px;
+    margin-top: 10px; /* Небольшой компенсирующий отступ для подзаголовка */
+}
+
+.reviews-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e5b94d; /* Savanna Gold */
+    display: block;
+    margin-bottom: 15px;
+}
+
+.reviews-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+.reviews-title {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #f7f4ef; /* Ivory Sky */
+    width: 48%;
+    line-height: 1.2;
+}
+
+.reviews-title .accent-text {
+    color: #e5b94d;
+}
+
+.reviews-header-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #f7f4ef;
+    opacity: 0.75;
+    width: 48%;
+    line-height: 1.6;
+}
+
+/* Слайдер и Обертка */
+.reviews-slider-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 20px;
+}
+
+/* Лента карусели */
+.reviews-carousel {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto; 
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Скрываем скроллбар в Firefox */
+    padding: 20px 0;
+    width: 100%;
+    scroll-snap-type: x mandatory; /* Мягкое прилипание страниц */
+}
+
+.reviews-carousel::-webkit-scrollbar {
+    display: none; /* Скрываем скроллбар в Webkit */
+}
+
+/* Карточка отзыва */
+.review-card {
+    flex: 0 0 calc(33.333% - 20px); /* Ровно 3 карточки на экране десктопа */
+    background-color: #3e3e3e; /* Матовый серый Volcanic Ash */
+    border-radius: 24px;
+    padding: 45px 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    scroll-snap-align: start;
+}
+
+/* Звездный рейтинг (По центру) */
+.rating-stars {
+    color: #e5b94d; /* Золотые звезды */
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-align: center; /* Выравнивание по центру */
+}
+
+.star-inactive {
+    color: #5a5a5a; /* Неактивные тускло-серые звезды */
+}
+
+.review-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #f7f4ef;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Блок автора */
+.reviewer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.reviewer-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.reviewer-name {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: #f7f4ef;
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+}
+
+/* Кнопки навигации */
+.slider-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #4a4a4a; /* Исходный серый */
+    color: #f7f4ef;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.2s ease;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+/* Ховер эффект — благородный Terra Cotta */
+.slider-btn:hover {
+    background-color: #a85532; 
+    transform: scale(1.08);
+}
+
+.slider-btn:active {
+    transform: scale(0.95);
+}
+
+/* Панель пагинации (Строго по центру) */
+.reviews-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрируем прогресс-бар */
+    gap: 15px;
+    margin-top: 40px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: #f7f4ef;
+    width: 100%;
+}
+
+.pag-current {
+    color: #e5b94d;
+    font-weight: 600;
+}
+
+.pag-divider, .pag-total {
+    opacity: 0.4;
+}
+
+.pag-progress-bar {
+    width: 200px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    position: relative;
+    border-radius: 2px;
+}
+
+.pag-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Базовое заполнение для 1-й страницы из 2-х */
+    height: 100%;
+    background-color: #a85532; /* Наполнение цвета Terra Cotta */
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 1200px) {
+    .review-card {
+        flex: 0 0 calc(50% - 15px); /* 2 карточки в ряду */
+    }
+}
+
+@media (max-width: 992px) {
+    .reviews-header-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .reviews-title, .reviews-header-desc {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        flex: 0 0 100%; /* 1 карточка в ряду на мобильных */
+        padding: 35px 25px;
+    }
+    .slider-btn {
+        display: none; /* Управление свайпами */
+    }
+}
+
+/* ==========================================================================
+   СЕКЦИЯ С ФОРМОЙ БРОНИРОВАНИЯ (CTA Section)
+   ========================================================================== */
+.cta-section {
+    background-color: #3e3e3e; /* Матовый серый */
+    padding: 120px; /* Оставляем только снизу, так как сверху плавно перетекает из преимуществ */
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.cta-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+/* Левая сторона */
+.cta-content {
+    width: 45%;
+}
+
+.cta-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e5b94d;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.cta-title {
+    font-family: var(--font-serif);
+    font-size: 3.4rem;
+    font-weight: 700;
+    color: #f7f4ef;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.cta-title .accent-text {
+    color: #e5b94d;
+}
+
+.cta-desc {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: #f7f4ef;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* Правая сторона — Форма */
+.cta-form-container {
+    width: 48%;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.booking-form input {
+    width: 100%;
+    background-color: transparent;
+    border: 1.5px solid rgba(247, 244, 239, 0.25); /* Тонкая матовая рамка */
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: #f7f4ef;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Отступ для иконок справа */
+.icon-input input {
+    padding-right: 50px;
+}
+
+.booking-form input:focus {
+    outline: none;
+    border-color: #e5b94d; /* Savanna Gold при фокусе */
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Стилизация плейсхолдера */
+.booking-form input::placeholder {
+    color: #f7f4ef;
+    opacity: 0.4;
+}
+
+/* Иконки полей */
+.input-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f7f4ef;
+    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* Кнопка отправки формы (Terra Cotta) */
+.submit-btn {
+    width: 100%;
+    background-color: #a85532; /* Благородный терракотовый */
+    color: #f7f4ef;
+    border: none;
+    border-radius: 12px;
+    padding: 18px 30px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #bc5e37; /* Чуть светлее при наведении */
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+.submit-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover svg {
+    transform: translateX(4px); /* Анимация стрелочки вперед */
+}
+
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .advantages-grid {
+        gap: 20px;
+    }
+    .advantage-image {
+        height: 320px;
+        padding: 25px;
+    }
+    .cta-wrapper {
+        gap: 40px;
+    }
+    .cta-title {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .advantages-header-row, .cta-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .advantages-title, .advantages-header-desc, .cta-content, .cta-form-container {
+        width: 100%;
+    }
+    .advantages-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .advantage-image {
+        height: 360px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-title {
+        font-size: 2.2rem;
+    }
+    .booking-form input, .submit-btn {
+        padding: 14px 18px;
+    }
+}
+
+/* ==========================================================================
+   СЕКЦИЯ FAQ (Аккордеоны)
+   ========================================================================== */
+.faq-section {
+    background-color: #1a1a1a; /* Глубокий темный Obsidian Night */
+    padding: 120px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.faq-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e5b94d; /* Savanna Gold */
+    display: block;
+    margin-bottom: 15px;
+}
+
+.faq-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.faq-title {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #f7f4ef; /* Ivory Sky */
+    width: 48%;
+    line-height: 1.2;
+}
+
+.faq-title .accent-text {
+    color: #e5b94d;
+}
+
+.faq-header-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #f7f4ef;
+    opacity: 0.75;
+    width: 48%;
+    line-height: 1.6;
+}
+
+/* Контейнер аккордеона */
+.faq-accordion-wrapper {
+    max-width: 100%;
+    margin-top: 40px;
+}
+
+/* Элемент списка вопросов */
+.accordion-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); /* Тонкая горизонтальная линия */
+}
+
+/* Кнопка-триггер (Заголовок вопроса) */
+.accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    color: #f7f4ef;
+    transition: color 0.3s ease;
+}
+
+.accordion-question {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Круглый контейнер для стрелочки */
+.accordion-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(247, 244, 239, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f7f4ef;
+    opacity: 0.7;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                border-color 0.3s ease, 
+                color 0.3s ease;
+}
+
+/* Эффекты при наведении */
+.accordion-trigger:hover .accordion-question {
+    color: #e5b94d; /* Подсветка золотом при наведении */
+}
+
+.accordion-trigger:hover .accordion-icon-box {
+    border-color: #e5b94d;
+    color: #e5b94d;
+    opacity: 1;
+}
+
+/* Внутренний контейнер для скрытия контента */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.accordion-content-inner {
+    padding-bottom: 35px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #f7f4ef;
+    opacity: 0.75;
+    max-width: 85%; /* Чтобы текст не растягивался во всю ширину */
+}
+
+/* Стили для Активного (раскрытого) состояния */
+.accordion-item.active .accordion-icon-box {
+    transform: rotate(180deg); /* Плавный переворот стрелочки вверх */
+    border-color: #e5b94d;
+    color: #e5b94d;
+    opacity: 1;
+}
+
+.accordion-item.active .accordion-question {
+    color: #e5b94d;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .faq-header-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .faq-title, .faq-header-desc {
+        width: 100%;
+    }
+    .accordion-question {
+        font-size: 1.15rem;
+    }
+    .accordion-content-inner {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================================
+   СЕКЦИЯ ФУТЕРА (Footer Section)
+   ========================================================================== */
+.main-footer {
+    background-color: #111111; /* Глубокий премиальный Obsidian Night (чуть темнее основного фона) */
+    padding: 80px 0 90px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* --- Левый блок: Брендинг --- */
+.footer-brand-block {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f7f4ef; /* Ivory Sky */
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    width: 20px;
+    height: auto;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.logo-text {
+
+    font-family: var(--font-logo);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo-thin {
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.footer-copyright {
+    font-family: var(--font-sans);
+    font-size: 0.90rem;
+    color: #f7f4ef;
+    opacity: 0.4;
+    margin-bottom: 35px;
+    letter-spacing: 0.5px;
+}
+
+/* Иконки соцсетей (Интерактив: Savanna Gold) */
+.footer-socials {
+    display: flex;
+    gap: 18px;
+}
+
+.social-link {
+    color: #f7f4ef;
+    opacity: 0.6;
+    transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.3s ease, 
+                opacity 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link:hover {
+    color: #e5b94d; /* Savanna Gold при наведении */
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* --- Средний блок: Меню (Интерактив: Savanna Gold) --- */
+.footer-nav-block {
+    width: 20%;
+}
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.footer-link {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #f7f4ef;
+    text-decoration: none;
+    opacity: 0.8;
+    display: inline-block;
+    transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                padding-left 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #e5b94d; /* Savanna Gold */
+    padding-left: 4px; /* Мягкий скандинавский сдвиг вправо */
+}
+
+/* --- Правый блок: Подписка --- */
+.footer-newsletter-block {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.newsletter-title {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #e5b94d; /* Заголовок изначально Savanna Gold по макету */
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.newsletter-desc {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: #f7f4ef;
+    opacity: 0.6;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 90%;
+}
+
+/* Форма */
+.newsletter-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.newsletter-input-group {
+    position: relative;
+    flex-grow: 1;
+}
+
+.newsletter-form input {
+    width: 100%;
+    background-color: #f7f4ef; /* Светлая подложка по макету */
+    border: 1.5px solid transparent;
+    border-radius: 30px; /* Скругленное поле */
+    padding: 14px 50px 14px 24px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #111111;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Фокус инпута (Интерактив: Подсветка Savanna Gold) */
+.newsletter-form input:focus {
+    outline: none;
+    border-color: #e5b94d; /* Рамка становится Savanna Gold */
+    box-shadow: 0 0 0 3px rgba(229, 185, 77, 0.15);
+}
+
+.newsletter-form input::placeholder {
+    color: #111111;
+    opacity: 0.4;
+}
+
+/* Иконка письма внутри инпута */
+.newsletter-icon {
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #111111;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+/* При фокусе на поле иконка подсвечивается золотом */
+.newsletter-form input:focus + .newsletter-icon {
+    color: #e5b94d;
+    opacity: 1;
+}
+
+/* Кнопка Subscribe (Интерактив: Переход в Savanna Gold) */
+.newsletter-btn {
+    background-color: #a85532; /* Базовый благородный терракотовый */
+    color: #f7f4ef;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-shrink: 0;
+    transition: background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.2s ease,
+                box-shadow 0.3s ease;
+}
+
+.newsletter-btn:hover {
+    background-color: #e5b94d; /* При ховере переходит в цвет Savanna Gold! */
+    color: #111111; /* Для читаемости на золотом фоне */
+    box-shadow: 0 5px 15px rgba(229, 185, 77, 0.2);
+}
+
+.newsletter-btn:active {
+    transform: scale(0.97);
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ФУТЕРА
+   ========================================================================== */
+@media (max-width: 992px) {
+    .footer-wrapper {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .footer-brand-block, .footer-nav-block, .footer-newsletter-block {
+        width: 100%;
+    }
+    .newsletter-desc {
+        max-width: 100%;
+    }
+    .footer-copyright {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .newsletter-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .newsletter-btn {
+        width: 100%;
+    }
+}
