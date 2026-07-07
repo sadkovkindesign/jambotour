@@ -166,6 +166,7 @@ ul {
     justify-content: center;
     text-align: center;
     padding-top: 80px;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -198,7 +199,7 @@ ul {
     margin-right: auto;
 }
 
-/* --- Кнопка --- */
+/* --- Кнопка с микро-анимациями --- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -211,16 +212,55 @@ ul {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-main);
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary {
     background-color: var(--primary-btn-bg);
 }
 
+/* Элементы внутри кнопки для ховер-эффекта */
+.btn i {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Интерактивный ховер кнопки */
 .btn-primary:hover {
     background-color: #c25221; 
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(194, 82, 33, 0.4); /* Мягкое терракотовое свечение */
 }
+
+/* Анимация стрелочки: она слегка сдвигается вправо, приглашая к действию */
+.btn-primary:hover i {
+    transform: translateX(4px);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(194, 82, 33, 0.3);
+}
+
+
+/* --- ЭФФЕКТЫ АНИМАЦИИ ПРИ ЗАГРУЗКЕ (Fade In Up) --- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px); /* Начальное смещение вниз */
+    animation: fadeInUpWithShift 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    /* Расчет задержки шага появления: каждый следующий элемент ждет на 250ms дольше */
+    animation-delay: calc(var(--delay) * 0.25s); 
+}
+
+@keyframes fadeInUpWithShift {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Возвращаем в исходную позицию */
+    }
+}
+
 
 /* Градиентное затемнение внизу */
 .hero-overlay-bottom {
